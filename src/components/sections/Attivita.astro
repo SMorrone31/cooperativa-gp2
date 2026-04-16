@@ -1,0 +1,333 @@
+---
+const categorie = [
+  { id: "tutte", label: "Tutte" },
+  { id: "benessere", label: "Benessere" },
+  { id: "creativita", label: "Creatività" },
+  { id: "socialita", label: "Socialità" },
+  { id: "natura", label: "Natura" },
+];
+
+const attivita = [
+  {
+    icona: "🐾",
+    titolo: "Pet Therapy",
+    categoria: "benessere",
+    colore: "salvia",
+    descr: "I nostri amici a quattro zampe visitano la residenza ogni settimana. Le coccole, i sorrisi e la gioia che portano non si trovano in nessuna farmacia.",
+  },
+  {
+    icona: "🎂",
+    titolo: "Feste di compleanno",
+    categoria: "socialita",
+    colore: "terracotta",
+    descr: "Ogni compleanno è una festa vera: torta fatta in casa, candeline, canzoni e tanti auguri. Perché ogni anno in più è un regalo da celebrare.",
+  },
+  {
+    icona: "🎄",
+    titolo: "Festività insieme",
+    categoria: "socialita",
+    colore: "ocra",
+    descr: "Natale, Pasqua, Carnevale, Festa della Repubblica — ogni ricorrenza è un'occasione per decorare, cucinare qualcosa di speciale e stare insieme.",
+  },
+  {
+    icona: "🎨",
+    titolo: "Laboratori creativi",
+    categoria: "creativita",
+    colore: "terracotta",
+    descr: "Pittura, decoupage, lavoretti stagionali, ceramica. Le mani che creano tengono viva la mente e regalano soddisfazione autentica.",
+  },
+  {
+    icona: "🎵",
+    titolo: "Musica e ballo",
+    categoria: "socialita",
+    colore: "salvia",
+    descr: "Il mercoledì pomeriggio si balla. Un fisarmonicista locale suona le canzoni di una volta e i piedi partono da soli — anche chi dice di non saper ballare.",
+  },
+  {
+    icona: "🚌",
+    titolo: "Gite e uscite",
+    categoria: "socialita",
+    colore: "ocra",
+    descr: "Mercatini, sagre, visite a borghi vicini, gite al lago. Uscire insieme è sempre una piccola avventura che si racconta per settimane.",
+  },
+  {
+    icona: "🤸",
+    titolo: "Ginnastica dolce",
+    categoria: "benessere",
+    colore: "salvia",
+    descr: "Esercizi calibrati sulle possibilità di ciascuno, in cerchio, con musica. Muoversi fa bene al corpo e ancora di più all'umore.",
+  },
+  {
+    icona: "♟️",
+    titolo: "Giochi di società",
+    categoria: "creativita",
+    colore: "marrone",
+    descr: "Carte, tombola, scacchi, dama, Scarabeo. I tavoli della sala comune si animano ogni pomeriggio di sfide amichevoli e risate.",
+  },
+  {
+    icona: "🌱",
+    titolo: "Orto e giardinaggio",
+    categoria: "natura",
+    colore: "salvia",
+    descr: "Il nostro piccolo orto è curato dagli ospiti che amano la terra. Pomodori, erbe aromatiche, fiori stagionali: il verde guarisce l'anima.",
+  },
+  {
+    icona: "🎬",
+    titolo: "Cineforum",
+    categoria: "creativita",
+    colore: "marrone",
+    descr: "Ogni venerdì sera un film diverso, vecchio o nuovo. Commenti, ricordi, discussioni animate — il cinema come pretesto per stare insieme.",
+  },
+  {
+    icona: "📚",
+    titolo: "Lettura condivisa",
+    categoria: "creativita",
+    colore: "ocra",
+    descr: "Un volontario legge ad alta voce, gli ospiti ascoltano o intervengono. Romanzi, poesie, racconti di viaggio — le parole aprono mondi.",
+  },
+  {
+    icona: "🍳",
+    titolo: "Laboratorio di cucina",
+    categoria: "natura",
+    colore: "terracotta",
+    descr: "Biscotti, pizzette, torte di stagione. In cucina si impasta, si ride, si tramandano ricette di famiglia. Il profumo invade tutta la casa.",
+  },
+];
+
+const coloriMap: Record<string, { bg: string; dot: string; badge: string }> = {
+  salvia:    { bg: "rgba(122,158,126,0.10)", dot: "var(--color-salvia)",    badge: "rgba(122,158,126,0.15)" },
+  terracotta:{ bg: "rgba(196,123,90,0.10)",  dot: "var(--color-terracotta)",badge: "rgba(196,123,90,0.15)"  },
+  ocra:      { bg: "rgba(212,168,67,0.10)",  dot: "var(--color-ocra)",      badge: "rgba(212,168,67,0.15)"  },
+  marrone:   { bg: "rgba(74,55,40,0.06)",    dot: "var(--color-marrone)",   badge: "rgba(74,55,40,0.10)"    },
+};
+---
+
+<section id="attivita" class="attivita-section">
+  <div class="section-wrapper">
+
+    <!-- Header -->
+    <div class="attivita-header reveal">
+      <span class="tag-pill">Attività</span>
+      <h2 class="section-title" style="margin-top: 1rem;">
+        Ogni giorno c'è qualcosa<br />
+        <em style="font-style: italic; color: var(--color-terracotta);">da vivere insieme.</em>
+      </h2>
+      <p class="section-subtitle" style="margin-top: 1.25rem;">
+        Le attività non sono intrattenimento — sono la vita stessa. Occasioni per esprimersi,
+        per ridere, per imparare qualcosa di nuovo o riscoprire qualcosa di antico.
+      </p>
+    </div>
+
+    <!-- Griglia attività -->
+    <div class="attivita-grid">
+      {attivita.map((a, i) => {
+        const c = coloriMap[a.colore] ?? coloriMap.salvia;
+        return (
+          <div
+            class="attivita-card reveal"
+            style={`
+              animation-delay: ${(i % 4) * 0.1}s;
+              background-color: ${c.bg};
+              border-color: ${c.dot}22;
+            `}
+          >
+            <!-- Icona -->
+            <div class="attivita-icona-wrap" style={`background-color: ${c.badge};`}>
+              <span class="attivita-icona">{a.icona}</span>
+            </div>
+
+            <!-- Badge categoria -->
+            <span class="attivita-categoria" style={`background-color: ${c.badge}; color: ${c.dot};`}>
+              {categorie.find(cat => cat.id === a.categoria)?.label}
+            </span>
+
+            <!-- Contenuto -->
+            <h3 class="attivita-titolo">{a.titolo}</h3>
+            <p class="attivita-descr">{a.descr}</p>
+
+            <!-- Accent dot -->
+            <div class="attivita-dot" style={`background-color: ${c.dot};`}></div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Banner invito -->
+    <div class="attivita-banner reveal">
+      <div class="attivita-banner-inner">
+        <div class="attivita-banner-testo">
+          <h3 class="attivita-banner-titolo">
+            Vieni a vedere con i tuoi occhi.
+          </h3>
+          <p class="attivita-banner-sub">
+            Il calendario delle attività cambia ogni mese e si arricchisce sempre di nuove proposte.
+            La cosa migliore è venire a trovarci — una visita vale più di mille parole.
+          </p>
+        </div>
+        <a href="#prenota-visita" class="attivita-cta">
+          Prenota una visita
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ── Sezione ── */
+  .attivita-section {
+    padding-block: 7rem;
+    background-color: var(--color-caldo);
+  }
+
+  /* ── Header ── */
+  .attivita-header {
+    max-width: 52rem;
+    margin-bottom: 4rem;
+  }
+
+  /* ── Griglia ── */
+  .attivita-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 640px) {
+    .attivita-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .attivita-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* ── Card ── */
+  .attivita-card {
+    position: relative;
+    border: 1px solid;
+    border-radius: 1.25rem;
+    padding: 1.75rem 1.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .attivita-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px -8px rgba(74, 55, 40, 0.16);
+  }
+
+  .attivita-icona-wrap {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .attivita-icona {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .attivita-categoria {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .attivita-titolo {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-marrone);
+    margin-bottom: 0.65rem;
+    line-height: 1.3;
+  }
+  .attivita-descr {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: color-mix(in srgb, var(--color-marrone) 72%, transparent);
+  }
+
+  /* Pallino decorativo angolo in basso a destra */
+  .attivita-dot {
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    opacity: 0.12;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .attivita-card:hover .attivita-dot {
+    opacity: 0.22;
+    transform: scale(1.3);
+  }
+
+  /* ── Banner ── */
+  .attivita-banner {
+    background-color: var(--color-marrone);
+    border-radius: 2rem;
+    overflow: hidden;
+  }
+  .attivita-banner-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 2.5rem;
+    align-items: flex-start;
+  }
+  @media (min-width: 768px) {
+    .attivita-banner-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .attivita-banner-titolo {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: var(--color-avorio);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+  .attivita-banner-sub {
+    font-family: var(--font-sans);
+    font-size: 0.97rem;
+    color: rgba(247, 243, 236, 0.65);
+    line-height: 1.7;
+    max-width: 36rem;
+  }
+  .attivita-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--color-terracotta);
+    color: white;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.9rem 1.75rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .attivita-cta:hover {
+    background-color: var(--color-terracotta-dark);
+    transform: translateY(-2px);
+  }
+</style>

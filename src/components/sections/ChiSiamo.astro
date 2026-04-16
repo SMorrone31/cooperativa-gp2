@@ -1,0 +1,317 @@
+---
+const valori = [
+  {
+    icona: "🤝",
+    titolo: "Spirito cooperativo",
+    testo: "Siamo una cooperativa sociale: ogni decisione nasce dal confronto, ogni persona conta. Non siamo un'azienda — siamo una comunità che lavora insieme."
+  },
+  {
+    icona: "🌿",
+    titolo: "Cura autentica",
+    testo: "Ci prendiamo cura delle persone, non delle pratiche. Ogni ospite ha la sua storia, i suoi ritmi, le sue abitudini — e noi le rispettiamo ogni giorno."
+  },
+  {
+    icona: "🏡",
+    titolo: "Una casa, non un istituto",
+    testo: "Qui si vive, non si soggiorna. Si chiacchiera in cucina, si coltiva l'orto, si festeggia il compleanno con torta vera e candeline da soffiare."
+  },
+];
+
+const numeri = [
+  { valore: "1987", etichetta: "Anno di fondazione" },
+  { valore: "45",   etichetta: "Ospiti accolti" },
+  { valore: "30+",  etichetta: "Persone nel team" },
+  { valore: "100%", etichetta: "Cooperativa sociale" },
+];
+---
+
+<section id="chi-siamo" class="chi-siamo-section">
+  <div class="section-wrapper">
+
+    <!-- Intestazione -->
+    <div class="chi-header reveal">
+      <span class="tag-pill">Chi siamo</span>
+      <h2 class="section-title" style="margin-top: 1rem;">
+        Non un istituto.<br />
+        <em style="font-style: italic; color: var(--color-terracotta);">Una comunità.</em>
+      </h2>
+    </div>
+
+    <!-- Due colonne: testo + immagine -->
+    <div class="chi-grid">
+
+      <!-- Colonna testo -->
+      <div class="chi-testo reveal">
+        <p class="chi-lead">
+          La Cooperativa Sociale Giovanni Paolo II nasce nel 1987 a Brescia dalla volontà di un gruppo di persone convinte che prendersi cura degli anziani significhi prima di tutto <strong>rispettare la loro dignità e la loro storia</strong>.
+        </p>
+        <p class="chi-body">
+          In questi 37 anni abbiamo accolto centinaia di ospiti, costruito un team affiatato e radicato la nostra presenza nel territorio. Siamo cresciuti, ma senza mai perdere quello spirito familiare che ci contraddistingue dal primo giorno.
+        </p>
+        <p class="chi-body">
+          La nostra non è una struttura sanitaria. È una <strong>residenza animata</strong>, piena di voci, profumi di cucina, musica nel salone, fiori in giardino. Un posto dove ogni mattina ha senso svegliarsi.
+        </p>
+
+        <!-- Firma fondatori -->
+        <div class="chi-firma">
+          <div class="chi-firma-linea"></div>
+          <p class="chi-firma-testo">
+            <em>"Abbiamo iniziato con dodici ospiti e tanta buona volontà. Oggi siamo in tanti, ma ogni persona che entra qui è ancora, per noi, quella prima volta."</em>
+          </p>
+          <p class="chi-firma-nome">— Maria Grazia Colombo, co-fondatrice</p>
+        </div>
+      </div>
+
+      <!-- Colonna immagine -->
+      <div class="chi-immagine reveal">
+        <div class="chi-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&q=80"
+            alt="Staff della cooperativa con gli ospiti in giardino"
+            class="chi-img"
+            loading="lazy"
+          />
+          <!-- Badge sovrapposto -->
+          <div class="chi-img-badge">
+            <span class="chi-img-badge-num">37</span>
+            <span class="chi-img-badge-txt">anni<br />insieme</span>
+          </div>
+        </div>
+
+        <!-- Seconda immagine piccola -->
+        <div class="chi-img-small-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1559234935-55e8e2e70c75?w=400&q=80"
+            alt="Momento conviviale nella sala comune"
+            class="chi-img-small"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Card valori -->
+    <div class="chi-valori">
+      {valori.map((v, i) => (
+        <div class="chi-valore-card reveal" style={`animation-delay: ${i * 0.15}s`}>
+          <span class="chi-valore-icona">{v.icona}</span>
+          <h3 class="chi-valore-titolo">{v.titolo}</h3>
+          <p class="chi-valore-testo">{v.testo}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Striscia numeri -->
+    <div class="chi-numeri reveal">
+      {numeri.map(({ valore, etichetta }) => (
+        <div class="chi-numero">
+          <span class="chi-numero-val">{valore}</span>
+          <span class="chi-numero-label">{etichetta}</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .chi-siamo-section {
+    padding-block: 7rem;
+    background-color: var(--color-caldo);
+  }
+
+  /* ── Header ── */
+  .chi-header {
+    max-width: 42rem;
+    margin-bottom: 5rem;
+  }
+
+  /* ── Grid due colonne ── */
+  .chi-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .chi-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+  }
+
+  /* ── Testo ── */
+  .chi-lead {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-marrone);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .chi-body {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: color-mix(in srgb, var(--color-marrone) 80%, transparent);
+    margin-bottom: 1.25rem;
+  }
+  .chi-firma {
+    margin-top: 2.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--color-terracotta);
+  }
+  .chi-firma-linea {
+    display: none;
+  }
+  .chi-firma-testo {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-marrone);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+  .chi-firma-nome {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--color-terracotta);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── Immagini ── */
+  .chi-immagine {
+    position: relative;
+  }
+  .chi-img-wrap {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 12px 48px -8px rgba(74, 55, 40, 0.2);
+  }
+  .chi-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .chi-img-badge {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background-color: var(--color-terracotta);
+    color: white;
+    border-radius: 1rem;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 4px 16px rgba(74, 55, 40, 0.25);
+  }
+  .chi-img-badge-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .chi-img-badge-txt {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+  }
+  .chi-img-small-wrap {
+    margin-top: 1rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 32px -8px rgba(74, 55, 40, 0.18);
+  }
+  .chi-img-small {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Card valori ── */
+  .chi-valori {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+  }
+  @media (min-width: 768px) {
+    .chi-valori { grid-template-columns: repeat(3, 1fr); }
+  }
+  .chi-valore-card {
+    background-color: var(--color-avorio);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    border: 1px solid color-mix(in srgb, var(--color-terracotta) 12%, transparent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .chi-valore-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -8px rgba(74, 55, 40, 0.14);
+  }
+  .chi-valore-icona {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .chi-valore-titolo {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--color-marrone);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  .chi-valore-testo {
+    font-family: var(--font-sans);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--color-marrone) 75%, transparent);
+  }
+
+  /* ── Striscia numeri ── */
+  .chi-numeri {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    background-color: var(--color-marrone);
+    border-radius: 1.5rem;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .chi-numeri { grid-template-columns: repeat(4, 1fr); }
+  }
+  .chi-numero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1.5rem;
+    border-right: 1px solid rgba(247, 243, 236, 0.1);
+    gap: 0.4rem;
+  }
+  .chi-numero:last-child { border-right: none; }
+  .chi-numero-val {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--color-ocra-light);
+    line-height: 1;
+  }
+  .chi-numero-label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: rgba(247, 243, 236, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+</style>

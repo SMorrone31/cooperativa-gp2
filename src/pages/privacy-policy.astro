@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+---
+
+<BaseLayout title="Privacy Policy — Cooperativa Sociale Giovanni Paolo II">
+  <main style="padding-top: 8rem; padding-bottom: 6rem;">
+    <div class="section-wrapper">
+      <div style="max-width: 48rem; margin: 0 auto;">
+        <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); color: var(--color-marrone); margin-bottom: 2rem;">
+          Privacy Policy
+        </h1>
+        <div style="font-family: var(--font-sans); font-size: 1rem; line-height: 1.8; color: color-mix(in srgb, var(--color-marrone) 80%, transparent);">
+          <p style="margin-bottom: 1.5rem;">
+            <strong>Titolare del trattamento:</strong> Cooperativa Sociale Giovanni Paolo II,
+            Via Giovanni Paolo II 14, 25100 Brescia (BS) — P.IVA 01234567890
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            I dati personali raccolti tramite i moduli di contatto di questo sito
+            (nome, email, telefono, messaggio) vengono utilizzati esclusivamente per
+            rispondere alle richieste degli utenti e per organizzare le visite alla struttura.
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            I dati non vengono ceduti a terzi, non vengono utilizzati per finalità
+            di marketing e vengono conservati per il tempo strettamente necessario
+            a gestire la richiesta.
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            L'utente ha diritto di accesso, rettifica, cancellazione e opposizione
+            al trattamento dei propri dati, scrivendo a:
+            <a href="mailto:privacy@cooperativagp2.it" style="color: var(--color-terracotta); font-weight: 600;">
+              privacy@cooperativagp2.it
+            </a>
+          </p>
+          <p>
+            Base giuridica del trattamento: consenso dell'interessato (Art. 6 par. 1 lett. a GDPR).
+          </p>
+        </div>
+        <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 3rem; color: var(--color-terracotta); font-family: var(--font-sans); font-weight: 700; text-decoration: none;">
+          ← Torna alla home
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,317 @@
+---
+const giornata = [
+  { ora: "7:30",  momento: "Buongiorno", descr: "Colazione calda in sala da pranzo, il caffè pronto, i giornali sul tavolo." },
+  { ora: "9:30",  momento: "Attività",   descr: "Laboratori, ginnastica dolce, passeggiate in giardino o semplicemente una chiacchierata." },
+  { ora: "12:30", momento: "Pranzo",     descr: "Cucina casalinga, menù stagionali, tavoli apparecchiati con cura ogni giorno." },
+  { ora: "15:00", momento: "Pomeriggio", descr: "Riposo, lettura, giochi, visite dei familiari — il momento più atteso della giornata." },
+  { ora: "18:00", momento: "Cena",       descr: "Insieme a tavola, si racconta la giornata. Come a casa, anzi: come qui." },
+  { ora: "21:00", momento: "Serena notte", descr: "Ogni ospite rientra nel proprio spazio, accolto dalla sua routine e dalla sua tranquillità." },
+];
+
+const pilastri = [
+  {
+    icona: "☀️",
+    titolo: "Libertà e ritmi personali",
+    testo: "Non esistono orari imposti o sveglie forzate. Ogni ospite mantiene le proprie abitudini: chi ama alzarsi presto, chi preferisce fare con calma. Rispettiamo le persone, non i protocolli.",
+    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&q=80",
+    imgAlt: "Ospite che legge in giardino al mattino presto"
+  },
+  {
+    icona: "🍽️",
+    titolo: "Cucina vera, ogni giorno",
+    testo: "La nostra cuoca prepara ogni giorno piatti della tradizione italiana con ingredienti freschi. Nessun cibo preconfezionato, nessuna mensa. Una cucina che sa di casa.",
+    img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80",
+    imgAlt: "Tavola imbandita con piatti della tradizione italiana"
+  },
+  {
+    icona: "🌸",
+    titolo: "Convivialità e relazioni",
+    testo: "Le amicizie che nascono qui durano anni. I corridoi, il giardino, la sala comune sono luoghi vivi, dove si ride, si ricorda, si sta insieme senza fretta.",
+    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=80",
+    imgAlt: "Gruppo di ospiti che chiacchierano in giardino"
+  },
+];
+---
+
+<section id="vita-qui" class="vita-section">
+
+  <!-- Intestazione centrata -->
+  <div class="section-wrapper">
+    <div class="vita-header reveal">
+      <span class="tag-pill">La vita qui</span>
+      <h2 class="section-title" style="margin-top: 1rem;">
+        Una giornata qui dentro<br />
+        <em style="font-style: italic; color: var(--color-salvia-dark);">è una giornata piena.</em>
+      </h2>
+      <p class="section-subtitle" style="margin-top: 1.25rem;">
+        Non organizziamo le giornate — le viviamo insieme. Ogni momento ha il suo sapore,
+        ogni ora il suo ritmo. Ecco come scorre una giornata tipo nella nostra residenza.
+      </p>
+    </div>
+  </div>
+
+  <!-- Timeline giornata -->
+  <div class="vita-timeline-wrap">
+    <div class="section-wrapper">
+      <div class="vita-timeline reveal">
+        {giornata.map((item, i) => (
+          <div class="vita-step">
+            <!-- Ora -->
+            <div class="vita-step-ora">{item.ora}</div>
+            <!-- Connettore -->
+            <div class="vita-step-connettore">
+              <div class="vita-step-dot"></div>
+              {i < giornata.length - 1 && <div class="vita-step-linea"></div>}
+            </div>
+            <!-- Contenuto -->
+            <div class="vita-step-content">
+              <h3 class="vita-step-titolo">{item.momento}</h3>
+              <p class="vita-step-descr">{item.descr}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Tre pilastri con immagine -->
+  <div class="section-wrapper">
+    <div class="vita-pilastri">
+      {pilastri.map((p, i) => (
+        <div class={`vita-pilastro reveal ${i % 2 === 1 ? 'vita-pilastro--reverse' : ''}`}>
+          <!-- Immagine -->
+          <div class="vita-pilastro-img-wrap">
+            <img
+              src={p.img}
+              alt={p.imgAlt}
+              class="vita-pilastro-img"
+              loading="lazy"
+            />
+            <div class="vita-pilastro-icona-badge">{p.icona}</div>
+          </div>
+          <!-- Testo -->
+          <div class="vita-pilastro-testo">
+            <h3 class="vita-pilastro-titolo">{p.titolo}</h3>
+            <p class="vita-pilastro-body">{p.testo}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Banner citazione -->
+  <div class="vita-citazione-wrap reveal">
+    <div class="vita-citazione">
+      <span class="vita-citazione-virgolette">"</span>
+      <p class="vita-citazione-testo">
+        Quando mia madre è entrata qui, dopo una settimana mi ha detto:<br />
+        <em>«Sai, mi sento a casa.»</em><br />
+        Non speravo in tanto, così presto.
+      </p>
+      <p class="vita-citazione-firma">— Famiglia Martinelli, ospite da 3 anni</p>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* ── Sezione ── */
+  .vita-section {
+    padding-block: 7rem;
+    background-color: var(--color-avorio);
+  }
+
+  /* ── Header ── */
+  .vita-header {
+    max-width: 52rem;
+    margin-bottom: 4rem;
+  }
+
+  /* ── Timeline ── */
+  .vita-timeline-wrap {
+    background-color: var(--color-marrone);
+    padding-block: 4rem;
+    margin-bottom: 6rem;
+  }
+  .vita-timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 768px) {
+    .vita-timeline {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+    }
+  }
+
+  .vita-step {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(247, 243, 236, 0.08);
+  }
+  @media (min-width: 768px) {
+    .vita-step {
+      flex-direction: column;
+      padding: 0 1rem;
+      border-bottom: none;
+      border-right: 1px solid rgba(247, 243, 236, 0.08);
+    }
+    .vita-step:last-child { border-right: none; }
+  }
+
+  .vita-step-ora {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-ocra-light);
+    min-width: 4rem;
+    line-height: 1;
+  }
+  @media (min-width: 768px) {
+    .vita-step-ora { font-size: 1.6rem; margin-bottom: 0.75rem; }
+  }
+
+  .vita-step-connettore {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .vita-step-connettore {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 0.75rem;
+    }
+  }
+  .vita-step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-terracotta);
+    flex-shrink: 0;
+  }
+
+  .vita-step-titolo {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #FAF6EE;
+    margin-bottom: 0.4rem;
+  }
+  .vita-step-descr {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: rgba(247, 243, 236, 0.65);
+  }
+
+  /* ── Pilastri ── */
+  .vita-pilastri {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin-bottom: 5rem;
+  }
+  .vita-pilastro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .vita-pilastro {
+      grid-template-columns: 1fr 1fr;
+    }
+    .vita-pilastro--reverse .vita-pilastro-img-wrap {
+      order: 2;
+    }
+    .vita-pilastro--reverse .vita-pilastro-testo {
+      order: 1;
+    }
+  }
+
+  .vita-pilastro-img-wrap {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 12px 48px -8px rgba(74, 55, 40, 0.18);
+  }
+  .vita-pilastro-img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .vita-pilastro-img-wrap:hover .vita-pilastro-img {
+    transform: scale(1.03);
+  }
+  .vita-pilastro-icona-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 16px rgba(74, 55, 40, 0.15);
+  }
+
+  .vita-pilastro-titolo {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 600;
+    color: var(--color-marrone);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+  .vita-pilastro-body {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: color-mix(in srgb, var(--color-marrone) 75%, transparent);
+  }
+
+  /* ── Citazione ── */
+  .vita-citazione-wrap {
+    background-color: var(--color-salvia);
+    border-radius: 2rem;
+    overflow: hidden;
+  }
+  .vita-citazione {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .vita-citazione-virgolette {
+    font-family: var(--font-serif);
+    font-size: 8rem;
+    color: rgba(255,255,255,0.2);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .vita-citazione-testo {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: white;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .vita-citazione-firma {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+</style>

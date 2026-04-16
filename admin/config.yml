@@ -1,0 +1,119 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+locale: 'it'
+
+collections:
+
+  # ── IMPOSTAZIONI GENERALI ──
+  - name: "impostazioni"
+    label: "⚙️ Impostazioni generali"
+    files:
+      - name: "generale"
+        label: "Dati cooperativa"
+        file: "src/content/impostazioni/generale.json"
+        fields:
+          - { label: "Nome cooperativa", name: "nome", widget: "string" }
+          - { label: "Partita IVA", name: "piva", widget: "string" }
+          - { label: "Codice fiscale", name: "cf", widget: "string" }
+          - { label: "Indirizzo", name: "indirizzo", widget: "string" }
+          - { label: "Città", name: "citta", widget: "string" }
+          - { label: "Telefono", name: "telefono", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Anno di fondazione", name: "anno_fondazione", widget: "string" }
+          - { label: "Numero ospiti", name: "num_ospiti", widget: "string" }
+          - { label: "Numero staff", name: "num_staff", widget: "string" }
+          - { label: "Link Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Link Facebook", name: "facebook", widget: "string", required: false }
+
+  # ── STAFF ──
+  - name: "staff"
+    label: "👥 Team"
+    label_singular: "Membro del team"
+    folder: "src/content/staff"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nome e cognome", name: "nome", widget: "string" }
+      - { label: "Ruolo", name: "ruolo", widget: "string" }
+      - { label: "Frase personale", name: "frase", widget: "text" }
+      - { label: "Foto", name: "img", widget: "image" }
+      - label: "Colore accento"
+        name: "colore"
+        widget: "select"
+        options:
+          - { label: "Terracotta", value: "terracotta" }
+          - { label: "Verde salvia", value: "salvia" }
+          - { label: "Ocra", value: "ocra" }
+          - { label: "Marrone", value: "marrone" }
+      - { label: "Ordine visualizzazione", name: "ordine", widget: "number", default: 99 }
+
+  # ── ATTIVITÀ ──
+  - name: "attivita"
+    label: "🎨 Attività"
+    label_singular: "Attività"
+    folder: "src/content/attivita"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "titolo", widget: "string" }
+      - { label: "Icona (emoji)", name: "icona", widget: "string" }
+      - { label: "Descrizione", name: "descr", widget: "text" }
+      - label: "Categoria"
+        name: "categoria"
+        widget: "select"
+        options:
+          - { label: "Benessere", value: "benessere" }
+          - { label: "Creatività", value: "creativita" }
+          - { label: "Socialità", value: "socialita" }
+          - { label: "Natura", value: "natura" }
+      - label: "Colore card"
+        name: "colore"
+        widget: "select"
+        options:
+          - { label: "Verde salvia", value: "salvia" }
+          - { label: "Terracotta", value: "terracotta" }
+          - { label: "Ocra", value: "ocra" }
+          - { label: "Marrone", value: "marrone" }
+      - { label: "Ordine visualizzazione", name: "ordine", widget: "number", default: 99 }
+
+  # ── SPAZI / GALLERY ──
+  - name: "spazi"
+    label: "🏠 Spazi e gallery"
+    label_singular: "Spazio"
+    folder: "src/content/spazi"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titolo", name: "titolo", widget: "string" }
+      - { label: "Descrizione", name: "descr", widget: "text" }
+      - { label: "Foto", name: "img", widget: "image" }
+      - { label: "Testo alternativo foto", name: "imgAlt", widget: "string" }
+      - { label: "Card grande (occupa più spazio)", name: "grande", widget: "boolean", default: false }
+      - { label: "Ordine visualizzazione", name: "ordine", widget: "number", default: 99 }
+
+  # ── TESTIMONIANZE ──
+  - name: "testimonianze"
+    label: "💬 Testimonianze"
+    label_singular: "Testimonianza"
+    folder: "src/content/testimonianze"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Testo testimonianza", name: "testo", widget: "text" }
+      - { label: "Nome famiglia", name: "autore", widget: "string" }
+      - { label: "Dettaglio (es: Figlia di un ospite, da 2 anni)", name: "dettaglio", widget: "string" }
+      - { label: "Iniziale (lettera avatar)", name: "iniziale", widget: "string", pattern: ['^[A-Z]$', "Una sola lettera maiuscola"] }
+      - label: "Colore"
+        name: "colore"
+        widget: "select"
+        options:
+          - { label: "Terracotta", value: "terracotta" }
+          - { label: "Verde salvia", value: "salvia" }
+          - { label: "Ocra", value: "ocra" }
+      - { label: "In evidenza (card scura)", name: "featured", widget: "boolean", default: false }
+      - { label: "Ordine visualizzazione", name: "ordine", widget: "number", default: 99 }

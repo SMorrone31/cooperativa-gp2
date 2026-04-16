@@ -1,0 +1,271 @@
+---
+const testimonianze = [
+  {
+    testo: "Quando abbiamo portato nostro padre qui, avevamo tanta paura. Tanta. Invece già dopo pochi giorni lo sentivamo più sereno di quanto non fosse a casa da solo. Lo staff lo conosce per nome, sa cosa gli piace, lo fa sentire importante. Non potevamo sperare di meglio.",
+    autore: "Famiglia Bianchi",
+    dettaglio: "Figlio di un ospite, residente da 2 anni",
+    iniziale: "B",
+    colore: "terracotta",
+  },
+  {
+    testo: "Mia madre è una persona abitudinaria, difficile da spostare dal suo mondo. Pensavo che non si sarebbe mai adattata. Invece adesso ha le sue amiche, la sua routine, partecipa alle attività. Mi ha detto che le dispiacerebbe andarsene — per me è stata la risposta più bella che potessi sentire.",
+    autore: "Famiglia Rossi",
+    dettaglio: "Figlia di un'ospite, residente da 3 anni",
+    iniziale: "R",
+    colore: "salvia",
+  },
+  {
+    testo: "Quello che apprezzo di più è la trasparenza. Ci tengono aggiornati, ci coinvolgono, possiamo venire a trovare nonna quando vogliamo. Non mi sono mai sentita esclusa o come se stessi affidando mia nonna a degli estranei. È davvero una famiglia allargata.",
+    autore: "Famiglia Ferretti",
+    dettaglio: "Nipote di un'ospite, residente da 18 mesi",
+    iniziale: "F",
+    colore: "ocra",
+  },
+  {
+    testo: "Mio marito ha la memoria un po' appannata, e temevo che si sentisse perso. Invece qui hanno la pazienza di ripetere, di guidarlo, di farlo sentire capace. Il cuoco si ricorda che non mangia cipolla. Piccole cose, ma che fanno tutta la differenza.",
+    autore: "Signora Colombo",
+    dettaglio: "Moglie di un ospite, residente da 8 mesi",
+    iniziale: "C",
+    colore: "terracotta",
+  },
+  {
+    testo: "Quando mio padre è entrato qui ha trovato un compagno di scacchi. Adesso si sfidano ogni pomeriggio e litigano bonariamente su ogni mossa. Ridono, competono, si fanno compagnia. Non avrei potuto dargli questo da solo.",
+    autore: "Famiglia Martinelli",
+    dettaglio: "Figlio di un ospite, residente da 14 mesi",
+    iniziale: "M",
+    colore: "salvia",
+  },
+];
+
+const coloriAccento: Record<string, { bg: string; testo: string; iniziale: string }> = {
+  terracotta: {
+    bg: "color-mix(in srgb, var(--color-terracotta) 10%, transparent)",
+    testo: "var(--color-terracotta)",
+    iniziale: "var(--color-terracotta)",
+  },
+  salvia: {
+    bg: "color-mix(in srgb, var(--color-salvia) 10%, transparent)",
+    testo: "var(--color-salvia-dark)",
+    iniziale: "var(--color-salvia)",
+  },
+  ocra: {
+    bg: "color-mix(in srgb, var(--color-ocra) 10%, transparent)",
+    testo: "var(--color-ocra-dark)",
+    iniziale: "var(--color-ocra)",
+  },
+};
+---
+
+<section id="testimonianze" class="testi-section">
+  <div class="section-wrapper">
+
+    <!-- Header -->
+    <div class="testi-header reveal">
+      <span class="tag-pill">Cosa dicono le famiglie</span>
+      <h2 class="section-title" style="margin-top: 1rem;">
+        Le parole di chi<br />
+        <em style="font-style: italic; color: var(--color-terracotta);">ci ha già scelti.</em>
+      </h2>
+      <p class="section-subtitle" style="margin-top: 1.25rem;">
+        La fiducia si costruisce nel tempo, giorno per giorno.
+        Queste sono le voci delle famiglie che ci hanno affidato le persone più care.
+      </p>
+    </div>
+
+    <!-- Griglia testimonianze -->
+    <div class="testi-grid">
+      {testimonianze.map((t, i) => {
+        const c = coloriAccento[t.colore] ?? coloriAccento.terracotta;
+        return (
+          <div
+            class={`testi-card reveal ${i === 0 ? 'testi-card--featured' : ''}`}
+            style={`animation-delay: ${(i % 3) * 0.12}s;`}
+          >
+            <!-- Virgolette decorative -->
+            <div class="testi-virgolette" style={`color: ${c.testo};`}>"</div>
+
+            <!-- Testo -->
+            <p class="testi-testo">{t.testo}</p>
+
+            <!-- Autore -->
+            <div class="testi-autore">
+              <div
+                class="testi-iniziale"
+                style={`background-color: ${c.iniziale}; color: white;`}
+              >
+                {t.iniziale}
+              </div>
+              <div>
+                <p class="testi-nome">{t.autore}</p>
+                <p class="testi-dettaglio">{t.dettaglio}</p>
+              </div>
+            </div>
+
+            <!-- Stelle -->
+            <div class="testi-stelle">
+              {"★★★★★".split("").map(() => (
+                <span style={`color: ${c.testo};`}>★</span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- CTA finale -->
+    <div class="testi-cta-wrap reveal">
+      <p class="testi-cta-testo">
+        Vuoi parlare con una famiglia che ha già vissuto questa esperienza?
+        <strong>Chiedici — organizziamo volentieri un incontro.</strong>
+      </p>
+      <a href="#prenota-visita" class="testi-cta-btn">
+        Vieni a trovarci
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .testi-section {
+    padding-block: 7rem;
+    background-color: var(--color-caldo);
+  }
+
+  .testi-header {
+    max-width: 52rem;
+    margin-bottom: 4rem;
+  }
+
+  /* ── Griglia ── */
+  .testi-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .testi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .testi-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ── Card ── */
+  .testi-card {
+    background-color: var(--color-avorio);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    border: 1px solid color-mix(in srgb, var(--color-marrone) 8%, transparent);
+    box-shadow: 0 4px 24px -4px rgba(74, 55, 40, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .testi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px -8px rgba(74, 55, 40, 0.15);
+  }
+  .testi-card--featured {
+    background-color: var(--color-marrone);
+  }
+  .testi-card--featured .testi-testo {
+    color: rgba(247, 243, 236, 0.90);
+  }
+  .testi-card--featured .testi-nome {
+    color: var(--color-avorio);
+  }
+  .testi-card--featured .testi-dettaglio {
+    color: rgba(247, 243, 236, 0.55);
+  }
+
+  .testi-virgolette {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    line-height: 0.8;
+    opacity: 0.4;
+    font-weight: 700;
+  }
+  .testi-testo {
+    font-family: var(--font-serif);
+    font-size: 1.02rem;
+    font-style: italic;
+    color: var(--color-marrone);
+    line-height: 1.75;
+    flex: 1;
+  }
+  .testi-autore {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: auto;
+  }
+  .testi-iniziale {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .testi-nome {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-marrone);
+    margin: 0;
+  }
+  .testi-dettaglio {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--color-marrone) 50%, transparent);
+    margin: 0;
+  }
+  .testi-stelle {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CTA finale ── */
+  .testi-cta-wrap {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .testi-cta-testo {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    color: color-mix(in srgb, var(--color-marrone) 75%, transparent);
+    line-height: 1.7;
+    max-width: 36rem;
+  }
+  .testi-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--color-terracotta);
+    color: white;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.9rem 1.9rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .testi-cta-btn:hover {
+    background-color: var(--color-terracotta-dark);
+    transform: translateY(-2px);
+  }
+</style>

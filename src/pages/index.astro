@@ -1,17 +1,29 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ChiSiamo from '../components/sections/ChiSiamo.astro';
+import VitaQui from '../components/sections/VitaQui.astro';
+import Attivita from '../components/sections/Attivita.astro';
+import Spazi from '../components/sections/Spazi.astro';
+import Team from '../components/sections/Team.astro';
+import MomentiDiVita from '../components/sections/MomentiDiVita.astro';
+import Testimonianze from '../components/sections/Testimonianze.astro';
+import PrenotaVisita from '../components/sections/PrenotaVisita.astro';
+import Contatti from '../components/sections/Contatti.astro';
+import '../styles/global.css';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <main>
+    <Hero />
+    <ChiSiamo />
+    <VitaQui />
+    <Attivita />
+    <Spazi />
+    <Team />
+    <MomentiDiVita />
+    <Testimonianze />
+    <PrenotaVisita />
+    <Contatti />
+  </main>
+</BaseLayout>

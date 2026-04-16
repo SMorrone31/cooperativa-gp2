@@ -1,0 +1,328 @@
+---
+const navLinks = [
+  { href: "#chi-siamo",      label: "Chi siamo" },
+  { href: "#vita-qui",       label: "La vita qui" },
+  { href: "#attivita",       label: "Attività" },
+  { href: "#spazi",          label: "Gli spazi" },
+  { href: "#team",           label: "Il team" },
+  { href: "#contatti",       label: "Contatti" },
+];
+---
+
+<header class="header" id="header">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a href="#home" class="header-logo">
+      <div class="header-logo-icon">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+          <path d="M20 8 C14 8 10 13 10 18 C10 25 16 28 20 32 C24 28 30 25 30 18 C30 13 26 8 20 8Z" fill="currentColor" opacity="0.8"/>
+          <circle cx="20" cy="18" r="4" fill="white" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="header-logo-testo">
+        <span class="header-logo-nome">Cooperativa Sociale</span>
+        <span class="header-logo-titolo">Giovanni Paolo II</span>
+      </div>
+    </a>
+
+    <!-- Nav desktop -->
+    <nav class="header-nav" aria-label="Navigazione principale">
+      {navLinks.map(({ href, label }) => (
+        <a href={href} class="header-nav-link">{label}</a>
+      ))}
+    </nav>
+
+    <!-- CTA desktop -->
+    <a href="#prenota-visita" class="header-cta">
+      Prenota una visita
+    </a>
+
+    <!-- Burger mobile -->
+    <button
+      class="header-burger"
+      id="burger-btn"
+      aria-label="Apri menu di navigazione"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+  </div>
+
+  <!-- Menu mobile -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav">
+      {navLinks.map(({ href, label }) => (
+        <a href={href} class="mobile-nav-link">{label}</a>
+      ))}
+      <a href="#prenota-visita" class="mobile-cta">
+        Prenota una visita
+      </a>
+    </nav>
+  </div>
+
+</header>
+
+<style>
+  /* ── Header base ── */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
+    padding-block: 1.25rem;
+  }
+
+  /* Stato scrollato — aggiunto via JS */
+  .header.scrolled {
+    background-color: rgba(250, 246, 238, 0.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 24px -4px rgba(74, 55, 40, 0.12);
+    padding-block: 0.75rem;
+  }
+
+  .header-inner {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* ── Logo ── */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .header-logo-icon {
+    color: var(--color-terracotta);
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  .header-logo:hover .header-logo-icon {
+    transform: scale(1.08);
+  }
+  .header-logo-testo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .header-logo-nome {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-terracotta);
+    transition: color 0.4s ease;
+  }
+  .header-logo-titolo {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #FAF6EE;
+    transition: color 0.4s ease;
+  }
+
+  /* Colori logo quando scrollato */
+  .header.scrolled .header-logo-titolo {
+    color: var(--color-marrone);
+  }
+
+  /* ── Nav desktop ── */
+  .header-nav {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+  }
+  @media (min-width: 1024px) {
+    .header-nav { display: flex; }
+  }
+
+  .header-nav-link {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 9999px;
+    color: rgba(250, 246, 238, 0.88);
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  .header-nav-link:hover {
+    color: #FAF6EE;
+    background-color: rgba(250, 246, 238, 0.12);
+  }
+  .header.scrolled .header-nav-link {
+    color: var(--color-marrone);
+  }
+  .header.scrolled .header-nav-link:hover {
+    color: var(--color-terracotta);
+    background-color: color-mix(in srgb, var(--color-terracotta) 8%, transparent);
+  }
+
+  /* ── CTA desktop ── */
+  .header-cta {
+    display: none;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 0.55rem 1.25rem;
+    border-radius: 9999px;
+    background-color: var(--color-terracotta);
+    color: white;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .header-cta:hover {
+    background-color: var(--color-terracotta-dark);
+    transform: translateY(-1px);
+  }
+  @media (min-width: 1024px) {
+    .header-cta { display: inline-flex; }
+  }
+
+  /* ── Burger ── */
+  .header-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+  }
+  .header-burger:hover {
+    background-color: rgba(250, 246, 238, 0.12);
+  }
+  @media (min-width: 1024px) {
+    .header-burger { display: none; }
+  }
+  .burger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #FAF6EE;
+    border-radius: 2px;
+    transition: background-color 0.4s ease, transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  .header.scrolled .burger-line {
+    background-color: var(--color-marrone);
+  }
+
+  /* Burger aperto */
+  .header-burger.open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header-burger.open .burger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .header-burger.open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Menu mobile ── */
+  .mobile-menu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+    background-color: rgba(250, 246, 238, 0.97);
+    backdrop-filter: blur(12px);
+  }
+  .mobile-menu.open {
+    max-height: 500px;
+  }
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem 1.5rem;
+    gap: 0.25rem;
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+  .mobile-nav-link {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-marrone);
+    text-decoration: none;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.75rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .mobile-nav-link:hover {
+    background-color: color-mix(in srgb, var(--color-terracotta) 8%, transparent);
+    color: var(--color-terracotta);
+  }
+  .mobile-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.75rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 9999px;
+    background-color: var(--color-terracotta);
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  .mobile-cta:hover {
+    background-color: var(--color-terracotta-dark);
+  }
+</style>
+
+<script>
+  const header    = document.getElementById('header')!;
+  const burgerBtn = document.getElementById('burger-btn')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+
+  // Scroll: aggiungi classe .scrolled
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // Burger toggle
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  // Chiudi menu mobile al click su un link
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      burgerBtn.classList.remove('open');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
