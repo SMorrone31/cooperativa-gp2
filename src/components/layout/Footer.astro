@@ -40,13 +40,11 @@ const navColonne = [
         <!-- Brand column -->
         <div class="footer-brand">
           <a href="#home" class="footer-logo">
-            <div class="footer-logo-icon">
-              <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
-                <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                <path d="M20 8 C14 8 10 13 10 18 C10 25 16 28 20 32 C24 28 30 25 30 18 C30 13 26 8 20 8Z" fill="currentColor" opacity="0.8"/>
-                <circle cx="20" cy="18" r="4" fill="white" opacity="0.9"/>
-              </svg>
-            </div>
+              <img
+                src="/images/logo_transparent.png"
+                alt="Cooperativa Sociale Giovanni Paolo II — Grassano"
+                class="footer-logo-img"
+              />
             <div>
               <p class="footer-logo-sopra">Cooperativa Sociale</p>
               <p class="footer-logo-nome">Giovanni Paolo II</p>
@@ -327,5 +325,18 @@ const navColonne = [
   .footer-bottom-sep {
     color: rgba(247, 243, 236, 0.2);
     font-size: 0.8rem;
+  }
+
+  .footer-logo-img {
+    height: 95px;
+    width: auto;
+    object-fit: contain;
+    /* Footer è scuro — invertiamo il logo a bianco/avorio */
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+  .footer-logo-img:hover {
+    opacity: 1;
   }
 </style>
